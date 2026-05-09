@@ -2,9 +2,7 @@
 
 ### **Cybersecurity & Information Security Professional | Firewalls & WAF Specialist**
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=fouadbehtaher&label=Profile views&color=0e75b6&style=flat" alt="fouadbehtaher" /> </p>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=fouadbehtaher" alt="fouadbehtaher" /></a> </p>
 
 - 🔭 I'm currently working on **- Hardening firewall rules (e.g., pfSense, Cisco ASA)
 - Web Application Firewall (WAF) tuning and threat detection
