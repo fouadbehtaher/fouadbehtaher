@@ -14,6 +14,24 @@
 <li>📙 Check out my <a href="https://d9f0z96nghtsz.cloudfront.net/">resume</a>.</li>
 <li>🎉 Fun Fact: 我也会讲中文。</li>
 </ul>
+<h2>🤝 Open Source Contributions</h2>
+<h3>✅ Merged: <a href="https://github.com/msoedov/agentic_security">msoedov/agentic_security</a> (2,000+ ⭐) — Agentic LLM Vulnerability Scanner / AI red-teaming kit</h3>
+<p><strong><a href="https://github.com/msoedov/agentic_security/pull/404">PR #404 — fix(http_spec): make LLMSpec.model_name always return a string</a></strong> · reviewed and merged by the maintainer on Nov 27, 2026 (<em>"LGTM, thx for the patch"</em>).</p>
+<ul>
+<li><strong>The find:</strong> while reading the scanner's request-handling code, <code>LLMSpec.model_name</code> was documented to return the request body's <code>model</code> field, or <code>"unknown"</code>. Two edge cases broke that contract: (1) a body that is valid JSON but not an object (<code>[1, 2]</code>, <code>"text"</code>, <code>null</code>) raised <code>AttributeError</code> on <code>.get</code> — the fuzzer only survived because a <code>getattr(..., "unknown")</code> happened to swallow it; (2) a non-string <code>model</code> (<code>null</code>, a number, a list, an object) was returned as-is, and a list or dict then reached <code>calculate_cost</code>, where <code>model not in PRICING</code> raised <code>TypeError: unhashable type</code>, crashing cost accounting mid-scan.</li>
+<li><strong>The fix:</strong> <code>model_name</code> now returns <code>"unknown"</code> unless the body is a JSON object whose <code>model</code> is a non-empty string (+11/−2 lines, one behavior only).</li>
+<li><strong>The proof:</strong> 14 new tests (13 parametrized edge cases plus a check that the result is safe to pass to <code>calculate_cost</code>); 10 of them fail against the original code and pass with the fix. Full suite: 538 passed, 2 skipped; <code>black</code> and <code>flake8</code> clean.</li>
+</ul>
+<h3>🔍 More contributions in review</h3>
+<ul>
+<li><a href="https://github.com/NVIDIA/garak/pull/2534">NVIDIA/garak #2534</a> (10k ⭐ LLM vulnerability scanner) — new <code>lmrc.Misogyny</code> probe and detector.</li>
+<li><a href="https://github.com/promptfoo/promptfoo/pull/12656">promptfoo/promptfoo #12656</a> — legal-vertical red team plugins.</li>
+<li><a href="https://github.com/Skyscanner/cfripper/pull/483">Skyscanner/cfripper #483</a> — new <code>RDSInstancePubliclyAccessibleRule</code> flagging publicly accessible RDS databases (HIGH risk).</li>
+<li><a href="https://github.com/cisco-ai-defense/mcp-scanner/pull/328">cisco-ai-defense/mcp-scanner #328</a> — detect instructions hidden by Unicode obfuscation before YARA rule matching.</li>
+<li><a href="https://github.com/CERT-Polska/Artemis/pull/3506">CERT-Polska/Artemis #3506</a> — keep <code>www.&lt;domain&gt;</code> in the wildcard subdomain filter instead of a bare "www".</li>
+<li><a href="https://github.com/projectdiscovery/nuclei-templates/pull/18132">projectdiscovery/nuclei-templates #18132</a> — detection template for CVE-2026-136716 (Drupal core exposed-installer access bypass).</li>
+<li><a href="https://github.com/Monesgoda/AgntX-Hunter/pull/3">Monesgoda/AgntX-Hunter #3</a> — fix three fail-open bugs in scope gating, with unit tests.</li>
+</ul>
 <h2>✒️ Recent Posts</h2>
 <p><a target="_blank" href="https://d9f0z96nghtsz.cloudfront.net/">Visit my website</a></p>
 <h2>🚀 Some Tools I Use</h2>
